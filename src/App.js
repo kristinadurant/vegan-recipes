@@ -1,13 +1,15 @@
 import './style/style.css';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
-import RecipePage from './pages/RecipePage';
 import Header from './components/Header';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import Logout from './components/Logout';
+import ForgotPassword from './components/ForgotPassword';
+import Profile from './pages/Profile';
+import ProfileUpdate from './pages/ProfileUpdate';
 
 function App() {
   return (
@@ -16,10 +18,11 @@ function App() {
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/vegan-recipes/:id' component={RecipePage} />
+          <PrivateRoute exact path='/profile' component={Profile} />
+          <PrivateRoute exact path='/profile/update' component={ProfileUpdate} />
           <Route path='/signup' component={Signup} />
           <Route path='/login' component={Login} />
-          <Route path='/logout' component={Logout} />
+          <Route path='/forgot-password' component={ForgotPassword} />
         </Switch>
       </BrowserRouter>
     </AuthProvider>

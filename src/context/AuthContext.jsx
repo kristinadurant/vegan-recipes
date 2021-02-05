@@ -9,7 +9,27 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password)
+        return auth.createUserWithEmailAndPassword(email, password);
+    }
+
+    function login(email, password) {
+        return auth.signInWithEmailAndPassword(email, password);
+    }
+
+    function logout() {
+        return auth.signOut();
+    }
+
+    function resetPassword(email) {
+        return auth.sendPasswordResetEmail(email);
+    }
+    
+    function updateProfile(email) {
+        return currentUser.updateEmail(email);
+    }
+    
+    function updatePassword(password) {
+        return currentUser.updatePassword(password);
     }
 
     useEffect(() => {
@@ -24,7 +44,12 @@ const AuthProvider = ({ children }) => {
 
     const value = {
         currentUser,
-        signup
+        signup,
+        login,
+        logout,
+        resetPassword,
+        updateProfile,
+        updatePassword
     }
 
     return (

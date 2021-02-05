@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  color: #000;
+  color: #222;
   line-height: 1.5em;
   font-size: 1rem;
 }
@@ -25,10 +25,4 @@ input:active {
 .inner {
   width: 75%;
   max-width: 1100px;
-}
-body {
-  height: 100vh;
-  background: pink url(../images/vegan-recipes.jpeg) no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
 }

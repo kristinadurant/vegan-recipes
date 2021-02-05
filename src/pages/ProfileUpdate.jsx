@@ -2,8 +2,10 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
-    const [formData, setFormData] = useState(null);
+    const { updateProfile, currentUser } = useContext(AuthContext);
+    const [formData, setFormData] = useState({
+        email: currentUser.email
+    });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -11,29 +13,27 @@ const Login = () => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
-    async function handleLogin(e) {
+    async function handleUpdateProfile(e) {
         e.preventDefault();
 
         try {
             setError('');
             setLoading(true);
-            await login(formData.email, formData.password);
+            await updateProfile(formData.email);
         } catch(err) {
             setError(err.message);
         }
         setLoading(false);
     }
-
+console.log(formData);
     return (
         <div>
-            <p>Log In</p>
+            <p>Update</p>
             {error && <p>{error}</p>}
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleUpdateProfile}>
                 <label>Email</label>
-                <input onChange={handleChange} type='email' name="email"/>
-                <label>Password</label>
-                <input onChange={handleChange} type='password' name="password"/>
-                <button disabled={loading} type='submit'>Log In</button>
+                <input onChange={handleChange} type='email' name="email" defaultValue={currentUser.email}/>
+                <button disabled={loading} type='submit'>Update</button>
             </form>
         </div>
     )

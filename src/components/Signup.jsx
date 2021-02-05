@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 const Signup = () => {
     const { signup } = useContext(AuthContext);
     const [formData, setFormData] = useState(null);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleChange = (event) => {
@@ -19,7 +19,7 @@ const Signup = () => {
         }
 
         try {
-            setError(null);
+            setError('');
             setLoading(true);
             await signup(formData.email, formData.password);
         } catch(err) {
