@@ -3,7 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
     const { login } = useContext(AuthContext);
-    const [formData, setFormData] = useState(null);
+    const [formData, setFormData] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -30,10 +30,11 @@ const Login = () => {
             {error && <p>{error}</p>}
             <form onSubmit={handleLogin}>
                 <label>Email</label>
-                <input onChange={handleChange} type='email' name="email"/>
+                <input onChange={handleChange} type='email' name="email" required/>
                 <label>Password</label>
-                <input onChange={handleChange} type='password' name="password"/>
-                <button disabled={loading} type='submit'>Log In</button>
+                <input onChange={handleChange} type='password' name="password" required/>
+                <button className="button" disabled={loading} type='submit'>Log In</button>
+                <p>Don't have an account? Sign up</p>
             </form>
         </div>
     )

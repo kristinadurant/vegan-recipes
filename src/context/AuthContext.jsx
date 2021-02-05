@@ -8,8 +8,13 @@ const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
 
-    function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password);
+    function signup(email, password, name) {
+        auth.createUserWithEmailAndPassword(email, password)
+        .then((response)=> {
+            const user = response.user;
+            user.updateProfile({displayName: name});
+        });
+        return;
     }
 
     function login(email, password) {
@@ -24,12 +29,16 @@ const AuthProvider = ({ children }) => {
         return auth.sendPasswordResetEmail(email);
     }
     
-    function updateProfile(email) {
-        return currentUser.updateEmail(email);
+    function updateUser(data) {
+        return currentUser.updateProfile(data);
     }
     
     function updatePassword(password) {
         return currentUser.updatePassword(password);
+    }
+
+    function deleteUser() {
+        return currentUser.delete();
     }
 
     useEffect(() => {
@@ -48,8 +57,9 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         resetPassword,
-        updateProfile,
-        updatePassword
+        updateUser,
+        updatePassword,
+        deleteUser
     }
 
     return (
