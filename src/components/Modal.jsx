@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import ReactDom from 'react-dom';
 import { ModalContext } from '../context/ModalContext';
-import ForgotPassword from './modal/ForgotPassword';
-import Login from './modal/Login';
-import Signup from './modal/Signup';
+import { Signup, Login, ForgotPassword } from './modalComponents';
 
 const Modal = () => {
     const { modal, setModal } = useContext(ModalContext);
