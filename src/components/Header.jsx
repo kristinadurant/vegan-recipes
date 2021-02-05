@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { ModalContext } from '../context/ModalContext';
 
 const Header = () => {
-    const { modal, currentUser } = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
     const { setModal } = useContext(ModalContext);
 
     function handleClick() {
@@ -15,7 +15,7 @@ const Header = () => {
         <header style={{borderBottom: '2px solid #999'}}>
             <div className="inner" style={{display: 'flex', justifyContent: 'space-between'}}>
                 <Link to='/'>Home</Link>
-                <button onClick={handleClick}>Account</button>
+                <button onClick={handleClick}><i class="fas fa-user"></i></button>
             </div>    
         </header>
     )

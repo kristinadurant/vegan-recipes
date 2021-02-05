@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
+import { ModalContext } from '../../context/ModalContext';
 
 const Signup = () => {
     const { signup } = useContext(AuthContext);
+    const { setModal } = useContext(ModalContext);
     const [formData, setFormData] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -42,7 +44,10 @@ const Signup = () => {
                 <label>Confirm Password</label>
                 <input onChange={handleChange} type='password' name="confirm_password" required/>
                 <button className="button" disabled={loading} type='submit'>Sign Up</button>
-                <p>Already have an account? Log in</p>
+                <p>
+                    Already have an account? 
+                    <button onClick={() => setModal('Login')}>Log in</button>
+                </p>
             </form>
         </div>
     )
