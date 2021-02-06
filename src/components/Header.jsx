@@ -15,7 +15,10 @@ const Header = () => {
         <header style={{borderBottom: '2px solid #999'}}>
             <div className="inner" style={{display: 'flex', justifyContent: 'space-between'}}>
                 <Link to='/'>Home</Link>
-                <button onClick={handleClick}><i class="fas fa-user"></i></button>
+                <button onClick={handleClick} name="login/profile">
+                    <span className="hide">Login/Profile</span>
+                    <i className="fas fa-user"></i>
+                </button>
             </div>    
         </header>
     )

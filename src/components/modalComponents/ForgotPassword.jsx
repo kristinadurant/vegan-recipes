@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { ModalContext } from '../../context/ModalContext';
 
 const ForgotPassword = () => {
     const { resetPassword } = useContext(AuthContext);
+    const { setModal } = useContext(ModalContext);
     const [formData, setFormData] = useState(null);
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
@@ -28,14 +30,19 @@ const ForgotPassword = () => {
 
     return (
         <div>
-            <p>Password Reset</p>
+            <h1>Password Reset</h1>
             {error && <p>{error}</p>}
             {message && <p>{message}</p>}
             <form onSubmit={handleResetPassword}>
-                <label>Email</label>
-                <input onChange={handleChange} type='email' name="email"/>
-                <button disabled={loading} type='submit'>Reset Password</button>
+                <label htmlFor="email">Email</label>
+                <input onChange={handleChange} type='email' name="email" id="email" required/>
+                <button className="button" disabled={loading} type='submit'>
+                    Reset Password
+                </button>
             </form>
+            <button className="link" onClick={() => setModal('Login')}>
+                Back to Login
+            </button>
         </div>
     )
 }

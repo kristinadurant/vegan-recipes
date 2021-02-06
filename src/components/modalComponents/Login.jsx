@@ -28,19 +28,21 @@ const Login = () => {
 
     return (
         <div>
-            <p>Log In</p>
+            <h1>Log In</h1>
             {error && <p>{error}</p>}
             <form onSubmit={handleLogin}>
-                <label>Email</label>
-                <input onChange={handleChange} type='email' name="email" required/>
-                <label>Password</label>
-                <input onChange={handleChange} type='password' name="password" required/>
-                <button className="button" disabled={loading} type='submit'>Log In</button>
-                <p>
-                    Don't have an account? 
-                    <button onClick={() => setModal('Signup')}>Sign up</button>
-                </p>
+                <label htmlFor="email">Email</label>
+                <input onChange={handleChange} type='email' name="email" id="email" required/>
+                <label htmlFor="password">Password</label>
+                <input onChange={handleChange} type='password' name="password" id="password" required/>
+                <button className="button" disabled={loading} type='submit'>Log In</button>                    
             </form>
+            <button className="link" onClick={() => setModal('ForgotPassword')}> 
+                Forgot Password?
+            </button>
+            <button className="link" onClick={() => setModal('Signup')}> 
+                Need an Account?
+            </button>
         </div>
     )
 }

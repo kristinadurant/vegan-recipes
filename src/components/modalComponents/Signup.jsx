@@ -32,23 +32,22 @@ const Signup = () => {
     
     return (
         <div>
-            <p>Sign Up</p>
+            <h1>Sign Up</h1>
             {error && <p>{error}</p>}
             <form onSubmit={handleSignUp}>
-                <label>Name</label>
-                <input onChange={handleChange} type='text' name="name" required/>
-                <label>Email</label>
-                <input onChange={handleChange} type='email' name="email" required/>
-                <label>Password</label>
-                <input onChange={handleChange} type='password' name="password" required/>
-                <label>Confirm Password</label>
-                <input onChange={handleChange} type='password' name="confirm_password" required/>
-                <button className="button" disabled={loading} type='submit'>Sign Up</button>
-                <p>
-                    Already have an account? 
-                    <button onClick={() => setModal('Login')}>Log in</button>
-                </p>
+                <label htmlFor="name">Name</label>
+                <input onChange={handleChange} type='text' name="name" id="name" required/>
+                <label htmlFor="email">Email</label>
+                <input onChange={handleChange} type='email' name="email" id="email" required/>
+                <label htmlFor="password">Password</label>
+                <input onChange={handleChange} type='password' name="password" id="password" required/>
+                <label htmlFor="confirm_password">Confirm Password</label>
+                <input onChange={handleChange} type='password' name="confirm_password" id="confirm_password" required/>
+                <button className="button" disabled={loading} type='submit'>Sign Up</button>          
             </form>
+            <button className="link" onClick={() => setModal('Login')}>
+                Already have an account?
+            </button>
         </div>
     )
 }
